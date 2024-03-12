@@ -1,0 +1,7 @@
+# General repository non-vital resources. 
+.DS_Store
+
+# Frontend repository non-vital resources. 
+frontend/node_modules
+yarn.lock
+
