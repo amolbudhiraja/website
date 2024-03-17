@@ -1,11 +1,11 @@
-import NavBar from "./components/NavBar";
+import NavBar from "../components/NavBar";
 
-export default function Home() {
+export default function About() {
   return (
     <>
       <NavBar />
       <div className="px-10 lg:px-20">
-        <p>Hello World</p>
+        <p>About Page</p>
       </div>
       
     </>
