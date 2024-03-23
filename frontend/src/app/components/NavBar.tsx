@@ -32,7 +32,7 @@ const NavBar = () => {
       </div>
       
       <div className="flex lg:flex-row items-start lg:items-center justify-between w-full">
-        <a className="py-5 text-2xl mb-10 lg:mb-0 lg:mr-5" href="/" onClick={closeMenu}>
+        <a className="py-5 text-2xl mb-10 lg:mb-0 lg:mr-5 font-bold" href="/" onClick={closeMenu}>
           Amol Budhiraja
         </a>
         <div className={`mb-10 lg:mb-0 space-y-5 flex-col lg:flex-row ${isOpen ? "flex" : "hidden"} lg:flex space-x-0 lg:space-x-5 lg:space-y-0 p-10 lg:p-0`}>
