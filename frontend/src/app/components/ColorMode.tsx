@@ -9,4 +9,4 @@ export const textColorDarkMode = 'text-white';
 export const gradientPatern = 'text-transparent bg-clip-text bg-gradient-to-br from-green-300 to-blue-400';
 
 /* UNIVERSAL COLOR ELEMENTS */
-export const linkFormat = 'text-blue-300 hover:underline'; 
+export const linkFormat = 'text-blue-300 hover:underline';

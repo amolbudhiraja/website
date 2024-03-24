@@ -16,3 +16,6 @@ export const ExperienceItem = ({experienceGroup, experienceLogo, experienceDate,
     </div>
     ); 
   }
+
+/** Card Element Styling. */
+export const cardClass = `bg-gray-600 p-10 m-2 rounded-2xl flex flex-col justify-between min-h-full`;

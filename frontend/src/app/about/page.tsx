@@ -8,7 +8,7 @@ export default function About() {
     <>
 
       <NavBar />
-      
+
       <div className="px-10 lg:px-20">
         <div className="space-y-5">
           <h1 className={`${textColorDarkMode} text-2xl font-bold`}>About Me</h1>
@@ -24,7 +24,7 @@ export default function About() {
             <div className="flex flex-col space-y-5">
               <p>As a student, I am always looking for ways to learn new technologies, frameworks, and languages. Through clubs, internships, and research, I have developed my skills and adopted new tools.</p>
               <div className="space-y-5">
-                <ExperienceItem experienceGroup="Berkeley Netsys Lab" experienceLogo="https://avatars.githubusercontent.com/u/3665805?s=200&v=4" experienceDate="Aug. 2023 - Present" jobTitle="Undergraduate Researcher" />
+                <ExperienceItem experienceGroup="Berkeley Nets4ys Lab" experienceLogo="https://avatars.githubusercontent.com/u/3665805?s=200&v=4" experienceDate="Aug. 2023 - Present" jobTitle="Undergraduate Researcher" />
                 <ExperienceItem experienceGroup="Mobile Developers of Berkeley" experienceLogo="https://media.licdn.com/dms/image/D560BAQFkIzTSGscP-w/company-logo_200_200/0/1702857117367/mobile_developers_of_berkeley_logo?e=2147483647&v=beta&t=WKFr5u2OajfG55ygEnuOkmGifwp-DWu8ZDVr4tPbvrg" experienceDate="Jan. 2022 - Present" jobTitle="Product Manager and Developer" />
                 <ExperienceItem experienceGroup="Apple" experienceLogo="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShJdjjHvLSgMDUjw550FNgGNRGNof4WxZphbP7Vklidg&s" experienceDate="May 2023 - Aug. 2023" jobTitle="Software Engineer Intern" />
                 <ExperienceItem experienceGroup="Alecto AI" experienceLogo="https://pbs.twimg.com/profile_images/1461575299188260864/lhR6VxI1_400x400.jpg" experienceDate="Jan. 2023 - May 2023" jobTitle="Software Engineer Intern" />
