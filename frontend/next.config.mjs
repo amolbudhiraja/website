@@ -22,6 +22,10 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'media.licdn.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'scontent.fsac1-2.fna.fbcdn.net',
+      },
     ],
   },
 };
