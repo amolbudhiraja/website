@@ -31,6 +31,72 @@ public class ArticleService extends DatabaseService {
         return null;
     }
 
+    /** Returns a sorted Map of the most recent two articles. */
+    public Map<String, String> getRecentArticles() {
+        Connection conn = _establishConnection();
+        LinkedHashMap<String, String> recentArticles = new LinkedHashMap<>();
+
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT id, title FROM " + _getTableName() + " ORDER BY date DESC LIMIT 2;";
+            ResultSet rs = statement.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String id = rs.getString("id");
+                String title = rs.getString("title");
+                recentArticles.put(id, title);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return recentArticles;
+    }
+
+    /** Gets the categories and the articleIDs associated with them. */
+    public Map<String, List<String>> getCategories() {
+        Connection conn = _establishConnection();
+        Map<String, List<String>> categoryMap = new HashMap<>();
+
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT category, id FROM " + _getTableName() + ";";
+            ResultSet rs = statement.executeQuery(sqlQuery);
+
+            while (rs.next()) {
+                String category = rs.getString("category");
+                String id = rs.getString("id");
+
+                if (categoryMap.containsKey(category)) {
+                    categoryMap.get(category).add(id);
+                } else {
+                    List<String> idList = new ArrayList<>();
+                    idList.add(id);
+                    categoryMap.put(category, idList);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null && !conn.isClosed()) {
+                    conn.close();
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return categoryMap;
+    }
+
+
     /** Insert a new row into the articles table with the provided values. */
     public void insertArticleRow(String title, String date, String author,
                                         String views, String category, String keywords,

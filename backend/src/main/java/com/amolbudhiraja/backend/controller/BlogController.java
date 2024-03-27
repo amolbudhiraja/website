@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
 import java.util.Map;
 
 @Controller
@@ -29,6 +30,24 @@ public class BlogController {
     String getCategory(@RequestParam String category) throws JsonProcessingException {
         ArticleService articleService = new ArticleService();
         Map<String, String> articles = articleService.getCategoryArticles(category);
+        return JsonConverter.mapToJson(articles);
+    }
+
+    /** Returns a JSON string of the categories. */
+    @GetMapping("/articles/category/list")
+    @ResponseBody
+    String getCategoryList() throws JsonProcessingException {
+        ArticleService articleService = new ArticleService();
+        Map<String, List<String>> articles = articleService.getCategories();
+        return JsonConverter.mapToJsonList(articles);
+    }
+
+    /** Returns a JSON string of the favorite articles. */
+    @GetMapping("/articles/favorites")
+    @ResponseBody
+    String getFavorites() throws JsonProcessingException {
+        ArticleService articleService = new ArticleService();
+        Map<String, String> articles = articleService.getRecentArticles();
         return JsonConverter.mapToJson(articles);
     }
 
