@@ -1,6 +1,6 @@
 package com.amolbudhiraja.backend.controller;
 
-import com.amolbudhiraja.backend.service.DatabaseService;
+import com.amolbudhiraja.backend.service.ArticleService;
 import com.amolbudhiraja.backend.service.JsonConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Controller;
@@ -18,15 +18,35 @@ public class BlogController {
     @GetMapping("/articles")
     @ResponseBody
     String getArticles() throws JsonProcessingException {
-        Map<String, Map<String, String>> articlesData = DatabaseService.getTableInfo("articles");
-        return JsonConverter.mapToJson(articlesData);
+        ArticleService articleService = new ArticleService();
+        Map<String, Map<String, String>> articlesData = articleService.getTableInfo();
+        return JsonConverter.mapToJsonNested(articlesData);
+    }
+
+    /** Returns a JSON string of the Articles. */
+    @GetMapping("/articles/category")
+    @ResponseBody
+    String getCategory(@RequestParam String category) throws JsonProcessingException {
+        ArticleService articleService = new ArticleService();
+        Map<String, String> articles = articleService.getCategoryArticles(category);
+        return JsonConverter.mapToJson(articles);
+    }
+
+    /** Returns a JSON string of the information for the article with id id. */
+    @GetMapping("/articles/article")
+    @ResponseBody
+    String getArticles(@RequestParam String id) throws JsonProcessingException {
+        ArticleService articleService = new ArticleService();
+        Map<String, String> articleData = articleService.getRowInfo(id);
+        return JsonConverter.mapToJson(articleData);
     }
 
     /** Returns a JSON string of the Articles. */
     @GetMapping("/articles/delete")
     @ResponseBody
     String deleteArticle(@RequestParam String id) {
-        DatabaseService.deleteTableRow("articles", id);
+        ArticleService articleService = new ArticleService();
+        articleService.deleteTableRow(id);
         return "Article with id " + id + "was successfully deleted.";
     }
 
@@ -34,10 +54,11 @@ public class BlogController {
     @GetMapping("/articles/views/incr")
     @ResponseBody
     String incrViews(@RequestParam String id) {
-        String currArticleViews = DatabaseService.getTableValue("articles", id, "views");
+        ArticleService articleService = new ArticleService();
+        String currArticleViews = articleService.getTableValue(id, "views");
         int currViews = Integer.parseInt(currArticleViews);
         int newViews = currViews + 1;
-        DatabaseService.updateTableValue("articles", "views", id, String.valueOf(newViews));
+        articleService.updateTableValue("views", id, String.valueOf(newViews));
         return "Article with id " + id + " views successfully updated.";
     }
 
@@ -54,7 +75,8 @@ public class BlogController {
                                 @RequestParam String summary,
                                 @RequestParam String image,
                                 @RequestParam String url) {
-        DatabaseService.insertArticleRow(title, date, author, views, category, keywords, body, summary, image, url);
+        ArticleService articleService = new ArticleService();
+        articleService.insertArticleRow(title, date, author, views, category, keywords, body, summary, image, url);
         return "Article successfully inserted.";
     }
 

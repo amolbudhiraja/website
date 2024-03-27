@@ -5,7 +5,19 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.Map;
 
 public class JsonConverter {
-    public static String mapToJson(Map<String, Map<String, String>> map) throws JsonProcessingException {
+
+    /** Converts a nested map of strings to JSON.
+     * Should be used in the Controllers to output a JSON response for the client.
+     * */
+    public static String mapToJsonNested(Map<String, Map<String, String>> map) throws JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        return objectMapper.writeValueAsString(map);
+    }
+
+    /** Converts a map of strings to JSON.
+     * Should be used in the Controllers to output a JSON response for the client.
+     * */
+    public static String mapToJson(Map<String, String> map) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(map);
     }
