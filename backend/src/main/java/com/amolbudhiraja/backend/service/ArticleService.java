@@ -31,14 +31,14 @@ public class ArticleService extends DatabaseService {
         return null;
     }
 
-    /** Returns a sorted Map of the most recent two articles. */
+    /** Returns a sorted Map of the most recent three articles. */
     public Map<String, String> getRecentArticles() {
         Connection conn = _establishConnection();
         LinkedHashMap<String, String> recentArticles = new LinkedHashMap<>();
 
         try {
             Statement statement = conn.createStatement();
-            String sqlQuery = "SELECT id, title FROM " + _getTableName() + " ORDER BY date DESC LIMIT 2;";
+            String sqlQuery = "SELECT id, title FROM " + _getTableName() + " ORDER BY date DESC LIMIT 3;";
             ResultSet rs = statement.executeQuery(sqlQuery);
 
             while (rs.next()) {
