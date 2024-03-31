@@ -60,6 +60,15 @@ public class BlogController {
         return JsonConverter.mapToJson(articleData);
     }
 
+    /** Returns a JSON string of the information for the article with slug urlSlug. */
+    @CrossOrigin(origins = "*") //FIXME: Remove when website is deployed to production.
+    @GetMapping("/articles/article/slug")
+    @ResponseBody
+    String getArticleViaSlug(@RequestParam String urlSlug) throws JsonProcessingException {
+        ArticleService articleService = new ArticleService();
+        Map<String, String> articleData = articleService.getArticleViaSlug(urlSlug);
+        return JsonConverter.mapToJson(articleData);
+    }
     /** Returns a JSON string of the Articles. */
     @GetMapping("/articles/delete")
     @ResponseBody

@@ -96,6 +96,34 @@ public class ArticleService extends DatabaseService {
         return categoryMap;
     }
 
+    /**
+     * Get the article information for a given article with slug url-slug.
+     */
+    public Map<String, String> getArticleViaSlug(String urlSlug) {
+        ///FIXME: Handle the case with the result set is empty.
+        Connection conn = _establishConnection();
+        List<String> tableColumnNames = getColumnNames();
+        try {
+            Statement statement = conn.createStatement();
+            String sqlQuery = "SELECT * FROM " + _getTableName() + " WHERE slug = " + urlSlug + ";";
+            ResultSet rs = statement.executeQuery(sqlQuery);
+            Map<String, String> result = new HashMap<>();
+            assert tableColumnNames != null;
+            rs.next();
+            for (String colName : tableColumnNames) {
+                String colValue = rs.getString(colName);
+                if (Objects.equals(colValue, "id")) {
+                    continue;
+                }
+                result.put(colName, colValue);
+            }
+            conn.close();
+            return result;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
     /** Insert a new row into the articles table with the provided values. */
     public void insertArticleRow(String title, String date, String author,
