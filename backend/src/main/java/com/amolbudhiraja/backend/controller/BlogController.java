@@ -4,10 +4,7 @@ import com.amolbudhiraja.backend.service.ArticleService;
 import com.amolbudhiraja.backend.service.JsonConverter;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -24,7 +21,7 @@ public class BlogController {
         return JsonConverter.mapToJsonNested(articlesData);
     }
 
-    /** Returns a JSON string of the Articles. */
+    /** Returns a JSON string of the articles in a given category. */
     @GetMapping("/articles/category")
     @ResponseBody
     String getCategory(@RequestParam String category) throws JsonProcessingException {
