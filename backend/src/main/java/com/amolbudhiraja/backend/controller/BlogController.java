@@ -40,6 +40,7 @@ public class BlogController {
     }
 
     /** Returns a JSON string of the favorite articles. */
+    @CrossOrigin(origins = "*")
     @GetMapping("/articles/favorites")
     @ResponseBody
     String getFavorites() throws JsonProcessingException {
