@@ -33,9 +33,9 @@ export default function ArticlePage() {
           <p className={textColorDarkMode}>{article?.date}</p>
           <p className={textColorDarkMode}>{article?.views}</p>
         </div>
-        <div className="flex justify-center rounded-2xl m-5"><Image className="rounded-2xl" objectFit="contain" width={2000} height={500} alt={`${article?.title} Image`} src={article?.image}/></div>
+        <div className="flex justify-center rounded-2xl m-5"><Image className="rounded-2xl" objectFit="contain" width={2000} height={500} alt={`${article?.title} Image`} src={article?.image || ""}/></div>
         <div className={textColorDarkMode}>
-          <div  dangerouslySetInnerHTML={{__html: article?.body}} />
+          <div  dangerouslySetInnerHTML={{__html: article?.body || ""}} />
         </div>
 
         <BlogBackItem />
