@@ -31,6 +31,7 @@ public class BlogController {
     }
 
     /** Returns a JSON string of the categories. */
+    @CrossOrigin(origins = "*") //FIXME: Remove when website is deployed to production.
     @GetMapping("/articles/category/list")
     @ResponseBody
     String getCategoryList() throws JsonProcessingException {
@@ -40,7 +41,7 @@ public class BlogController {
     }
 
     /** Returns a JSON string of the favorite articles. */
-    @CrossOrigin(origins = "*")
+    @CrossOrigin(origins = "*") //FIXME: Remove when website is deployed to production.
     @GetMapping("/articles/favorites")
     @ResponseBody
     String getFavorites() throws JsonProcessingException {
@@ -50,6 +51,7 @@ public class BlogController {
     }
 
     /** Returns a JSON string of the information for the article with id id. */
+    @CrossOrigin(origins = "*") //FIXME: Remove when website is deployed to production.
     @GetMapping("/articles/article")
     @ResponseBody
     String getArticles(@RequestParam String id) throws JsonProcessingException {
