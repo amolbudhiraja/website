@@ -105,7 +105,7 @@ public class ArticleService extends DatabaseService {
         List<String> tableColumnNames = getColumnNames();
         try {
             Statement statement = conn.createStatement();
-            String sqlQuery = "SELECT * FROM " + _getTableName() + " WHERE url = " + urlSlug + ";";
+            String sqlQuery = "SELECT * FROM " + _getTableName() + " WHERE url = '" + urlSlug + "';";
             ResultSet rs = statement.executeQuery(sqlQuery);
             Map<String, String> result = new HashMap<>();
             assert tableColumnNames != null;
