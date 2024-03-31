@@ -61,30 +61,32 @@ export default function Blog() {
 
 let ArticleItem = ({title, image, url, category, summary}: {title: string, image: string, url: string, category: string, summary: string}) => {
   return (
-    <div className="flex flex-row p-5 items-start">
-      <div className="w-1/3 flex-none">
-        <Image
-          className="rounded-2xl object-cover w-full"
-          width={500}
-          height={300}
-          alt={`${title} - Article Image`}
-          src={image}
-        />
+    <a href={`/blog/${url}`}>
+      <div className="flex flex-row p-5 items-start">
+        <div className="w-1/3 flex-none">
+          <Image
+            className="rounded-2xl object-cover w-full"
+            width={500}
+            height={300}
+            alt={`${title} - Article Image`}
+            src={image}
+          />
+        </div>
+        <div className="flex flex-col pl-5">
+          <p className="text-sm uppercase mb-2">
+            {category.charAt(0).toUpperCase() + category.slice(1)}
+          </p>
+          <h2 className="font-bold text-xl mb-4">
+            {title}
+          </h2>
+          <p className="lg:hidden">
+            {summary.substring(0, 250) + "..."}
+          </p>
+          <p className="hidden lg:block">
+            {summary.substring(0, 400)}
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col pl-5">
-        <p className="text-sm uppercase mb-2">
-          {category.charAt(0).toUpperCase() + category.slice(1)}
-        </p>
-        <h2 className="font-bold text-xl mb-4">
-          {title}
-        </h2>
-        <p className="lg:hidden">
-          {summary.substring(0, 250) + "..."}
-        </p>
-        <p className="hidden lg:block">
-          {summary.substring(0, 400)}
-        </p>
-      </div>
-    </div>
+    </a>
   );
 };

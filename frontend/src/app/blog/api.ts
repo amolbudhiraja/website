@@ -14,6 +14,10 @@ export const getArticle = (articleID: string) => {
     return axios.get(`${BASE_URL}/articles/article?id=${articleID}`);
 }
 
+export const getArticleFromSlug = (articleSlug: string) => {
+  return axios.get(`${BASE_URL}/articles/article/slug?urlSlug=${articleSlug}`);
+}
+
 export function capitalizeFirstLetter(str: String) {
     return str.charAt(0).toUpperCase() + str.slice(1);
 }
