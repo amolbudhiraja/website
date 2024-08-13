@@ -1,19 +1,9 @@
 'use client'; 
 
 import { SocialIcon } from 'react-social-icons'
-import { FaRegMoon, FaRegSun } from "react-icons/fa";
-import { getColorMode, toggleColorMode } from '../colormode';
-import { useEffect, useState } from 'react';
 
 /** Footer Component */
 function Footer() {
-    
-    const [colorMode, setColorMode] = useState(getColorMode());
-
-    useEffect(() => {
-        setColorMode(getColorMode());
-    }, [colorMode]);
-
 
     return (
         <>

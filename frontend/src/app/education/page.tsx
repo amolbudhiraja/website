@@ -102,11 +102,11 @@ export default function Education() {
         </div>
 
         <div className='flex flex-col space-y-10'>
-                    <ExperienceItem experienceGroup={'Berkeley Netsys Lab'} experienceLogo={'https://avatars.githubusercontent.com/u/3665805?s=200&v=4'} experienceDate={'Aug. 2023 - Present'} jobTitle={'Undergraduate Researcher'} />  
-                    <ExperienceItem experienceGroup={'Mobile Developers of Berkeley'} experienceLogo={'https://media.licdn.com/dms/image/D560BAQFkIzTSGscP-w/company-logo_200_200/0/1702857117367/mobile_developers_of_berkeley_logo?e=2147483647&v=beta&t=WKFr5u2OajfG55ygEnuOkmGifwp-DWu8ZDVr4tPbvrg'} experienceDate={'Aug. 2022 - Present'} jobTitle={'Product Manager and Developer'} />
-                    <ExperienceItem experienceGroup={'Berkeley Engineering Student Council'} experienceLogo={'https://s3.us-west-2.amazonaws.com/ycbm.production.upload.files/ycbm/6dEQ5nGveey62e7V48wf/images/profile_logo.png'} experienceDate={'Aug. 2021 - May 2023'} jobTitle={'Technical Director'} />
+                    <ExperienceItem experienceGroup={'Berkeley Netsys Lab'} experienceLogo={'https://avatars.githubusercontent.com/u/3665805?s=200&v=4'} experienceDate={'Aug. 2023 - Present'} jobTitle={'Undergraduate Researcher'} description={'Created SpaceGPT, an LLM that enables seamless device programming, user interaction, and real-time communication with IoT devices via natural language.'} />  
+                    <ExperienceItem experienceGroup={'Mobile Developers of Berkeley'} experienceLogo={'https://media.licdn.com/dms/image/D560BAQFkIzTSGscP-w/company-logo_200_200/0/1702857117367/mobile_developers_of_berkeley_logo?e=2147483647&v=beta&t=WKFr5u2OajfG55ygEnuOkmGifwp-DWu8ZDVr4tPbvrg'} experienceDate={'Aug. 2022 - Present'} jobTitle={'VP of Education'} description={'Served as the VP of Education where I redesigned the club\'s entire training program to focus on machine learning focused mobile development. I have also served as a PM and engineer.'} />
+                    <ExperienceItem experienceGroup={'Berkeley Engineering Student Council'} experienceLogo={'https://s3.us-west-2.amazonaws.com/ycbm.production.upload.files/ycbm/6dEQ5nGveey62e7V48wf/images/profile_logo.png'} experienceDate={'Aug. 2021 - May 2023'} jobTitle={'Technical Director'} description={'Managed the ESC website, servers, and spearheaded technology-based initiatives.'} />
 
-                    <ExperienceItem experienceGroup={'Associated Students of the University of California (ASUC)'} experienceLogo={'https://star.berkeley.edu/images/uploads/program/3LASUC2020.png'} experienceDate={'Aug. 2021 - May 2022'} jobTitle={'Engineering Department Associate'} />
+                    <ExperienceItem experienceGroup={'Associated Students of the University of California (ASUC)'} experienceLogo={'https://star.berkeley.edu/images/uploads/program/3LASUC2020.png'} experienceDate={'Aug. 2021 - May 2022'} jobTitle={'Engineering Department Associate'} description={'Lead initiatives supporting increased access to student resources and tutoring for underpriveldged students in the college of engineering.'} />
 
         </div>
     </div>

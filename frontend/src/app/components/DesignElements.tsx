@@ -16,10 +16,10 @@ export const ExperienceItem = ({experienceGroup, experienceLogo, experienceDate,
         <div className="flex flex-col w-full">
           <div className="flex flex-col lg:flex-row lg:justify-between">
             <p className={`${textColorDarkMode} font-bold`}>{experienceGroup}</p>
-            <p className={`lg:px-10`}>{experienceDate}</p>
+            <p className={`lg:px-5`}>{experienceDate}</p>
           </div>
-          <p className={`${textColorDarkMode}`}>{jobTitle}</p>
-          <p className={`${textColorDarkMode}`}>{description}</p>
+          <p className={`${textColorDarkMode} italic`}>{jobTitle}</p>
+          <p className={`${textColorDarkMode} pr-10`}>{description}</p>
         </div>
       </div>
     ); 
