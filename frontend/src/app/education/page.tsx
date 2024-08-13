@@ -19,11 +19,10 @@ const CourseItem = ({ courseTitle, courseType, courseLink }: { courseTitle: stri
   );
 };
 
-export default function About() {
+export default function Education() {
   return (
   <>
-    <NavBar />
-    <div className="px-10 lg:px-20 py-10 space-y-5">
+    <div id="education" className="px-10 lg:px-20 py-10 space-y-5">
         <div className="space-y-5">
             <h1 className={`text-4xl font-bold ${textColorDarkMode} space-y-5`}>Education</h1>
             <p className={textColorDarkMode}>During my university studies, I have/am taking courses in a variety of fields: Computer Science, Electrical Engineering, Data Science, Business, and more! For many of these courses, I have compiled notes/resources which have helped me/reflect my learning. Click on the course to access the resource!</p>
@@ -66,6 +65,9 @@ export default function About() {
 
             <div className="flex flex-col space-y-2">
             <h3 className={`flex text-xl font-bold justify-center ${textColorDarkMode}`}>Senior Year</h3>
+            <CourseItem courseTitle="CS 189: Machine Learning" courseType={SubjectColor.ComputerScience} courseLink={""} />
+            <CourseItem courseTitle="EECS 151: Digital Chip Design" courseType={SubjectColor.ElectricalEngineering} courseLink={""} />
+            <CourseItem courseTitle="Data 104: Ethics in Technology" courseType={SubjectColor.DataScience} courseLink={""} />
             </div>
 
         </div>
@@ -88,7 +90,7 @@ export default function About() {
                 <p className={textColorDarkMode}>In addition to taking these courses, I also have helped in the teaching of some of them:</p>
                 <p className={textColorDarkMode}><strong>CS61A</strong>: The Structure and Interpretation of Computer Programs - Academic Intern (Lab Assistant)</p>
                 <p className={textColorDarkMode}><strong>CS61B</strong>: Data Structures and Algorithms - Academic Intern (Lab Assistant)</p>
-                <p className={textColorDarkMode}><strong>EECS 16A</strong>: Designing Information Systems and Devices I - Computer Science Mentor (Tutor)</p>
+                <p className={textColorDarkMode}><strong>EECS 16A</strong>: Designing Information Systems and Devices I - <a href="https://csmentors.studentorg.berkeley.edu/#/">Computer Science Mentor</a> (Tutor)</p>
                 <p className={textColorDarkMode}></p>
             </div>
 
@@ -102,14 +104,12 @@ export default function About() {
         <div className='flex flex-col space-y-10'>
                     <ExperienceItem experienceGroup={'Berkeley Netsys Lab'} experienceLogo={'https://avatars.githubusercontent.com/u/3665805?s=200&v=4'} experienceDate={'Aug. 2023 - Present'} jobTitle={'Undergraduate Researcher'} />  
                     <ExperienceItem experienceGroup={'Mobile Developers of Berkeley'} experienceLogo={'https://media.licdn.com/dms/image/D560BAQFkIzTSGscP-w/company-logo_200_200/0/1702857117367/mobile_developers_of_berkeley_logo?e=2147483647&v=beta&t=WKFr5u2OajfG55ygEnuOkmGifwp-DWu8ZDVr4tPbvrg'} experienceDate={'Aug. 2022 - Present'} jobTitle={'Product Manager and Developer'} />
-                    <ExperienceItem experienceGroup={'Berkeley Engineering Student Council'} experienceLogo={'https://scontent.fsac1-2.fna.fbcdn.net/v/t39.30808-1/327145660_2905952832868293_3701186338987653282_n.png?stp=dst-png_p480x480&_nc_cat=102&ccb=1-7&_nc_sid=5f2048&_nc_ohc=1m5Gr2KZC7YAX9cM3Rs&_nc_ht=scontent.fsac1-2.fna&oh=00_AfCEq7fZ-tc62Miht4ZDqU40Xb2YvlL2XEQ8Uv7ZyVL7zg&oe=6605ACD2'} experienceDate={'Aug. 2021 - May 2023'} jobTitle={'Technical Director'} />
+                    <ExperienceItem experienceGroup={'Berkeley Engineering Student Council'} experienceLogo={'https://s3.us-west-2.amazonaws.com/ycbm.production.upload.files/ycbm/6dEQ5nGveey62e7V48wf/images/profile_logo.png'} experienceDate={'Aug. 2021 - May 2023'} jobTitle={'Technical Director'} />
 
-                    <ExperienceItem experienceGroup={'Associated Students of the University of California (ASUC)'} experienceLogo={'https://scontent.fsac1-2.fna.fbcdn.net/v/t39.30808-1/272373771_313819367457026_197931853944096553_n.png?stp=dst-png_p480x480&_nc_cat=107&ccb=1-7&_nc_sid=5f2048&_nc_ohc=0PSrDiswgfUAX8Y9MgX&_nc_ht=scontent.fsac1-2.fna&oh=00_AfAXnwp-uJsY4GhZBNYm-081zccK3MQaYlEZV8U1_1GlUg&oe=66052C9A'} experienceDate={'Aug. 2021 - May 2022'} jobTitle={'Engineering Department Associate'} />
+                    <ExperienceItem experienceGroup={'Associated Students of the University of California (ASUC)'} experienceLogo={'https://star.berkeley.edu/images/uploads/program/3LASUC2020.png'} experienceDate={'Aug. 2021 - May 2022'} jobTitle={'Engineering Department Associate'} />
 
         </div>
     </div>
-
-    <Footer />
 
     </>
   );

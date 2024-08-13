@@ -3,13 +3,22 @@ import Footer from "./components/Footer";
 import { textColorDarkMode, gradientPatern, linkFormat } from "./components/ColorMode";
 import Image from "next/image";
 import memoji from "./media/memoji.png"
+import Education from "./education/page";
+import Portfolio from "./portfolio/page";
+import About from "./experiences/page";
 
 
 export default function Home() {
   return (
     <>
       <NavBar />
-      <HomeHeader />
+      <div>
+        <HomeHeader />
+        <About />
+        <Education />
+        <Portfolio />
+      </div>
+
       <Footer />
     </>
   );
@@ -25,7 +34,7 @@ const HomeHeader = () => {
       </div>
       <div className="text-center lg:text-start">
         <h1 className={`text-2xl font-bold ${gradientPatern}`}>Hi! I am Amol Budhiraja!</h1>
-        <p className={`${textColorDarkMode} md:w-4/6`}>I am studying <a href="https://eecs.berkeley.edu/" className={linkFormat}>EECS</a> @ <a href="https://www.berkeley.edu/" className={linkFormat}>Berkeley</a>. I am also researching the intersection of LLMs and IoT devices at the <a href="https://netsys.cs.berkeley.edu/" className={linkFormat}>Berkeley NetSys Lab</a>. Additionally, I am a product manager and developer at <a href="https://mdb.dev/" className={linkFormat}>Mobile Developers of Berkeley</a>.</p>
+        <p className={`${textColorDarkMode} text-lg md:w-4/6`}>I am a Software Engineer intern @ <a href="https://www.meta.com/" className={linkFormat}>Meta</a>. I am studying <a href="https://eecs.berkeley.edu/" className={linkFormat}>EECS</a> @ <a href="https://www.berkeley.edu/" className={linkFormat}>Berkeley</a>. I am also researching the intersection of LLMs and IoT devices at the <a href="https://netsys.cs.berkeley.edu/" className={linkFormat}>Berkeley NetSys Lab</a>. Additionally, I am a product manager and developer at <a href="https://mdb.dev/" className={linkFormat}>Mobile Developers of Berkeley</a>.</p>
       </div>
     </div>
   </div>

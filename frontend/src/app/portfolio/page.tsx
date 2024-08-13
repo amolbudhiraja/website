@@ -1,18 +1,15 @@
 import React from 'react';
-import NavBar from "../components/NavBar";
-import Footer from "../components/Footer";
 import { FaPython, FaGithub } from "react-icons/fa";
 import { SiPytorch } from "react-icons/si";
 import { CgWebsite } from "react-icons/cg";
 import { cardClass } from '../components/DesignElements';
 
-export default function About() {
+export default function Portfolio() {
 
   return (
     <>
-      <NavBar />
-      <div className="px-10 lg:px-20 py-10">
-        <h1 className="text-2xl font-bold dark:text-white mb-5">My Projects</h1>
+      <div id="portfolio" className="px-10 lg:px-20 py-10">
+        <h1 className="text-4xl font-bold dark:text-white mb-5">My Projects</h1>
         <p className="dark:text-gray-300 mb-5">Throughout my career, I have created numerous projects that have helped apply my learnings from my classes, explore new technologies, and create impactful projects.</p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           
@@ -148,8 +145,6 @@ export default function About() {
 
         </div>
       </div>
-
-      <Footer />
     </>
   );
 }
