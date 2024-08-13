@@ -1,4 +1,4 @@
-# Personal Website of Amol Budhiraja
+# Welcome to my website!
 
 Welcome to the repository for my personal website, [amol.budhiraja.com](https://amol.budhiraja.com/). This site is built using Next.js and deployed via Vercel.
 
