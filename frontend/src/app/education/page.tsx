@@ -65,8 +65,8 @@ export default function Education() {
 
             <div className="flex flex-col space-y-2">
             <h3 className={`flex text-xl font-bold justify-center ${textColorDarkMode}`}>Senior Year</h3>
-            <CourseItem courseTitle="CS 189: Machine Learning" courseType={SubjectColor.ComputerScience} courseLink={""} />
-            <CourseItem courseTitle="EECS 151: Digital Chip Design" courseType={SubjectColor.ElectricalEngineering} courseLink={""} />
+            <CourseItem courseTitle="CS 189: Machine Learning" courseType={SubjectColor.ComputerScience} courseLink={"https://eecs189.org/"} />
+            <CourseItem courseTitle="CS 188: Artificial Intelligence" courseType={SubjectColor.ComputerScience} courseLink={"https://inst.eecs.berkeley.edu/~cs188/fa24/"} />
             <CourseItem courseTitle="Data 104: Ethics in Technology" courseType={SubjectColor.DataScience} courseLink={""} />
             </div>
 
