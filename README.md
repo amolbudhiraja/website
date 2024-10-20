@@ -22,7 +22,7 @@ This is the source code for my personal website, which showcases my work, projec
 ## Technologies Used
 
 - **Framework:** [Next.js](https://nextjs.org/)
-- **Styling:** CSS Modules / TailwindCSS (update as per your implementation)
+- **Styling:** CSS Modules / TailwindCSS
 - **Hosting:** [Vercel](https://vercel.com/)
 - **Other:** React, JavaScript, and any other libraries or tools you have used.
 
