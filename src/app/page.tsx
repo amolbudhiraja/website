@@ -24,7 +24,7 @@ export default function Home() {
         </FadeIn>
         <FadeIn delay={0.3}>
           <p className="text-lg text-muted-foreground leading-relaxed max-w-xl">
-            Software Engineer at{" "}
+            Software Engineer (Ads AI Infra) at{" "}
             <span className="text-indigo font-medium">Meta</span>.
             Berkeley EECS grad. I build things at scale, think about systems,
             and occasionally write about what I learn.
@@ -56,7 +56,7 @@ export default function Home() {
           </h2>
           <div className="space-y-3">
             {[
-              { label: "Role", value: "Software Engineer @ Meta" },
+              { label: "Role", value: "Software Engineer (Ads AI Infra) @ Meta" },
               { label: "Location", value: "San Francisco, CA" },
             ].map((item) => (
               <div
