@@ -92,7 +92,12 @@ export default function Home() {
           <div className="space-y-px">
             {featuredProjects.map((project) => (
               <FadeInStaggerItem key={project.title}>
-                <div className="group py-4 border-t border-border first:border-t-0">
+                <div className="group relative py-4 border-t border-border first:border-t-0">
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="absolute inset-0"
+                    aria-label={project.title}
+                  />
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 min-w-0">
                       <h3 className="text-sm font-medium text-foreground mb-1 group-hover:text-indigo transition-colors">
@@ -112,7 +117,7 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0 pt-0.5">
+                    <div className="relative z-10 flex items-center gap-2 shrink-0 pt-0.5">
                       {project.github && (
                         <a
                           href={project.github}
