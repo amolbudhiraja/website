@@ -1,0 +1,61 @@
+---
+title: "Sudoku Solver"
+description: "Computer vision pipeline that detects and solves Sudoku boards in real time"
+tags: ["C++", "Computer Vision"]
+github: "https://github.com/amolbudhiraja/sodukusolver"
+year: 2023
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "Camera Frame" }],
+    },
+    {
+      label: "Board Detection",
+      nodes: [
+        { label: "Gaussian Blur" },
+        { label: "Canny Edge Detection" },
+        { label: "Largest Quad Contour" },
+      ],
+    },
+    {
+      nodes: [{ label: "Perspective Warp", highlight: true, sublabel: "top-down view" }],
+    },
+    {
+      label: "Digit Recognition",
+      nodes: [
+        { label: "81-Cell Grid" },
+        { label: "Threshold + Denoise" },
+        { label: "KNN Classifier", highlight: true, sublabel: "+ Tesseract verify" },
+      ],
+    },
+    {
+      nodes: [{ label: "Backtracking Solver", sublabel: "9×9 constraint propagation" }],
+    },
+    {
+      label: "Output",
+      nodes: [
+        { label: "Inverse Perspective Warp" },
+        { label: "Solution Overlay" },
+      ],
+    },
+  ]}
+  caption="Classical CV pipeline — no deep learning"
+/>
+
+A fun project that chains together several computer vision techniques to take an arbitrary image of a Sudoku board and return the solved version. The goal was to build the full pipeline — from raw image to solution — without any deep learning.
+
+## The pipeline
+
+**Detection:** The board is located using edge detection (Canny) and contour finding. Once the largest quadrilateral contour is found, a perspective transform warps it into a flat top-down view.
+
+**Cell extraction:** The warped board is divided into an 81-cell grid. Each cell is preprocessed — thresholded, denoised — before digit recognition.
+
+**Classification:** A K-nearest neighbor classifier trained on digit images determines whether a cell is empty or contains a number. For filled cells, it extracts and classifies the digit. I used Tesseract as a secondary verification step.
+
+**Solving:** Once the board state is reconstructed as a 9×9 grid, a recursive backtracking algorithm solves it. Backtracking is fast enough here — even worst-case boards solve in milliseconds.
+
+**Output:** The solution is projected back onto the original image using the inverse perspective transform.
+
+Building this without a neural network for recognition was a deliberate choice — I wanted to understand classical CV before jumping to learned representations.

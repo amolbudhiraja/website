@@ -1,0 +1,59 @@
+---
+title: "RISC-V CPU"
+description: "Full RISC-V CPU implementation with caching, pipelining, and virtual memory"
+tags: ["Systems"]
+year: 2022
+---
+
+<SystemDiagram
+  rows={[
+    {
+      label: "5-Stage Pipeline",
+      nodes: [
+        { label: "IF", sublabel: "Fetch" },
+        { label: "ID", sublabel: "Decode" },
+        { label: "EX", sublabel: "ALU", highlight: true },
+        { label: "MEM", sublabel: "Load/Store" },
+        { label: "WB", sublabel: "Writeback", highlight: true },
+      ],
+    },
+    {
+      fullWidth: true,
+      nodes: [{ label: "Hazard Detection + Data Forwarding Unit", highlight: true, sublabel: "register forwarding to minimize stalls · branch flush on misprediction" }],
+    },
+    {
+      label: "Memory Hierarchy",
+      nodes: [
+        { label: "L1 I-Cache" },
+        { label: "L1 D-Cache" },
+        { label: "TLB", sublabel: "address translation" },
+      ],
+    },
+    {
+      nodes: [{ label: "L2 Unified Cache" }],
+    },
+    {
+      nodes: [{ label: "DRAM", sublabel: "simulated access latency" }],
+    },
+  ]}
+  caption="RV32I instruction set — built from scratch in Logisim"
+/>
+
+For Berkeley's CS 61C, I built a complete RISC-V CPU in Logisim — a digital logic simulation tool. The project starts at the transistor level and builds up to a functioning processor capable of executing a real instruction set.
+
+## Architecture
+
+**Datapath:** ALU supporting the full RISC-V RV32I integer instruction set. Register file, immediate generator, branch comparator, and control logic implemented from combinational logic primitives.
+
+**Pipelining:** 5-stage pipeline — Instruction Fetch, Decode, Execute, Memory, Writeback. Implemented hazard detection logic for data hazards (with forwarding to minimize stalls) and control hazards (branch prediction with flush on misprediction).
+
+**Memory hierarchy:**
+- L1 instruction and data caches with configurable size and associativity
+- L2 unified cache
+- DRAM simulation with realistic access latency
+
+**Virtual memory:** TLB for address translation caching. Page table walker in hardware for TLB misses.
+
+## Why Logisim
+
+Logisim is painful. Everything is drag-and-drop wires. When a signal is wrong, you trace it manually gate by gate. But that pain is the point — you can't cargo-cult your way through it. By the end I had a visceral understanding of why pipelines stall, why cache misses hurt, and why branch mispredictions are expensive. Those intuitions have stayed with me through every systems course and role since.

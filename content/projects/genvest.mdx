@@ -1,0 +1,60 @@
+---
+title: "Genvest"
+description: "Financial education mobile app with real-time market data"
+tags: ["React Native", "Mobile"]
+github: "https://github.com/amolbudhiraja"
+year: 2023
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "React Native UI" }],
+    },
+    {
+      label: "Client",
+      nodes: [
+        { label: "Redux Store" },
+        { label: "React Navigation" },
+        { label: "Chart Animations" },
+      ],
+    },
+    {
+      nodes: [{ label: "Node.js REST API", highlight: true }],
+    },
+    {
+      label: "Data",
+      nodes: [
+        { label: "Market Data APIs", sublabel: "real-time quotes" },
+        { label: "Portfolio Engine", highlight: true, sublabel: "P&L + metrics" },
+      ],
+    },
+    {
+      label: "Output",
+      nodes: [
+        { label: "Personalized Feed" },
+        { label: "Educational Overlays" },
+        { label: "Portfolio Simulator" },
+      ],
+    },
+  ]}
+  caption="Cross-platform iOS + Android with real-time market data"
+/>
+
+Genvest was built for people who want to understand investing but find the existing tools overwhelming. Most financial apps assume you already know what a P/E ratio is. Genvest assumes you don't — and tries to teach you while you explore.
+
+## What it does
+
+The app pulls real-time market data and surfaces it alongside contextual explanations. When you look up a stock, you see not just the price but a breakdown of key metrics with plain-English descriptions of what they mean and why they matter. Think of it as Bloomberg with a built-in tutor.
+
+Core features:
+- Real-time stock quotes and historical price charts
+- Metric breakdowns with educational overlays
+- A portfolio simulator — invest fake money and track it over time
+- Personalized learning modules based on what you're looking at
+
+## Stack
+
+Built in React Native for cross-platform support. The backend is a lightweight Node.js service that proxies market data APIs and handles user portfolios. I used Redux for state management and React Navigation for the tab and stack navigation structure.
+
+This was my first time shipping something that felt genuinely polished on mobile. Getting the chart animations and the swipe interactions to feel native took more iteration than I expected — mobile UX has a much higher bar than the web.

@@ -1,0 +1,57 @@
+---
+title: "Neural Radiance Fields (NeRF)"
+description: "Novel view synthesis from 2D images using volumetric neural rendering"
+tags: ["Python", "PyTorch", "Computer Vision"]
+year: 2024
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "Training Images" }, { label: "Camera Poses" }],
+    },
+    {
+      nodes: [{ label: "Ray Generation" }],
+    },
+    {
+      label: "Coarse Network",
+      nodes: [
+        { label: "Uniform Sampling" },
+        { label: "Positional Encoding γ", highlight: true, sublabel: "xyz + θφ → Fourier features" },
+        { label: "Coarse MLP", sublabel: "σ + color" },
+      ],
+    },
+    {
+      label: "Fine Network",
+      nodes: [
+        { label: "Importance Sampling", sublabel: "guided by coarse output" },
+        { label: "Positional Encoding γ", highlight: true },
+        { label: "Fine MLP", sublabel: "σ + color" },
+      ],
+    },
+    {
+      nodes: [{ label: "Volume Rendering", highlight: true, sublabel: "∫ σ · c · T dt" }],
+    },
+    {
+      nodes: [{ label: "Novel View Output" }],
+    },
+  ]}
+  caption="Hierarchical sampling: coarse network guides fine network sample placement"
+/>
+
+NeRF is one of those papers that genuinely changed how I think about 3D representation. Instead of explicitly storing geometry, you train a neural network to implicitly encode a scene as a continuous volumetric function — then render novel views by marching rays through it.
+
+## The core idea
+
+A NeRF takes a 5D input — 3D spatial coordinates (x, y, z) plus 2D viewing direction (θ, φ) — and outputs color and density at that point. To render a pixel, you shoot a ray from the camera, sample points along it, query the network at each point, and composite the results using classical volume rendering equations.
+
+What makes it work is positional encoding: raw coordinates are mapped to a higher-frequency Fourier feature space before being fed to the MLP. Without this, the network tends to learn overly smooth functions and misses fine detail.
+
+## Implementation details
+
+- Built the full volumetric rendering pipeline from scratch in PyTorch
+- Implemented hierarchical sampling: a coarse network proposes sample locations, a fine network refines them
+- Used positional encoding with configurable frequency bands
+- Trained on the standard Blender synthetic dataset to validate against published benchmarks
+
+Training a single scene takes hours even on GPU, which makes you appreciate just how much computation is hiding behind those silky smooth novel view videos.

@@ -1,0 +1,49 @@
+---
+title: "PintOS"
+description: "Full operating system implementation built from scratch"
+tags: ["C", "Systems"]
+year: 2023
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "User Process A" }, { label: "User Process B" }],
+    },
+    {
+      nodes: [{ label: "System Call Interface", highlight: true, sublabel: "exec · wait · read · write · exit" }],
+    },
+    {
+      label: "Kernel Subsystems",
+      nodes: [
+        { label: "Thread Scheduler", sublabel: "priority donation" },
+        { label: "Virtual Memory", sublabel: "demand paging + swap" },
+        { label: "File System", sublabel: "buffer cache + subdirs" },
+      ],
+    },
+    {
+      fullWidth: true,
+      nodes: [{ label: "Synchronization Primitives", sublabel: "locks · semaphores · condition variables", highlight: true }],
+    },
+    {
+      nodes: [{ label: "Hardware Abstraction Layer" }],
+    },
+  ]}
+  caption="Built on a skeleton kernel — threads, memory, and filesystem from scratch"
+/>
+
+PintOS is the OS project from Berkeley's CS 162. You're handed a skeleton kernel and told to build the rest of it. By the end, you have a working operating system that can run user programs, manage memory, and persist files to disk.
+
+## What I implemented
+
+**Threads:** Priority scheduling with priority donation to handle priority inversion. Implemented the thread lifecycle — creation, blocking, unblocking, and termination — along with synchronization primitives: locks, semaphores, and condition variables.
+
+**User programs:** System call interface between user space and the kernel. Argument passing, process execution via `exec`, parent-child relationships with `wait`, and proper memory validation to prevent user programs from crashing the kernel.
+
+**Virtual memory:** Demand paging with a supplemental page table. Pages are loaded lazily from disk on fault. Implemented a clock algorithm for page eviction, a swap partition for evicted pages, and memory-mapped files.
+
+**File system:** Extended the base file system with a buffer cache (LRU eviction), extensible file growth, and subdirectories. Added synchronization throughout to support concurrent file operations.
+
+## Why it matters
+
+PintOS is the project that made systems real for me. It's one thing to understand that an OS manages memory. It's another to spend three hours debugging a page fault handler at 2am, only to realize you forgot to acquire a lock. The gap between knowing and building is where the actual learning happens.

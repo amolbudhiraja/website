@@ -1,0 +1,64 @@
+---
+title: "RookieDB"
+description: "Java-based relational database with concurrency control and query optimization"
+tags: ["Java", "Systems"]
+year: 2023
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "SQL Query" }],
+    },
+    {
+      label: "Query Processing",
+      nodes: [
+        { label: "Parser" },
+        { label: "Logical Plan" },
+        { label: "Cost-Based Optimizer", highlight: true, sublabel: "DP over join orderings" },
+      ],
+    },
+    {
+      label: "Execution Engine",
+      nodes: [
+        { label: "Nested Loop Join" },
+        { label: "Sort-Merge Join" },
+        { label: "Hash Join", highlight: true },
+        { label: "B+ Tree Scan" },
+      ],
+    },
+    {
+      label: "Concurrency + Storage",
+      nodes: [
+        { label: "Lock Manager", highlight: true, sublabel: "IS·IX·S·SIX·X" },
+        { label: "Buffer Pool", sublabel: "LRU eviction" },
+        { label: "Deadlock Detection", sublabel: "waits-for graph" },
+      ],
+    },
+    {
+      nodes: [
+        { label: "WAL Logging" },
+        { label: "ARIES Recovery", sublabel: "analysis · redo · undo" },
+      ],
+    },
+  ]}
+  caption="Full relational database — from SQL to disk"
+/>
+
+RookieDB is the database project from Berkeley's CS 186. You start with a basic query execution engine and progressively add the features that make a real database system: indexes, joins, transactions, locking, and query optimization.
+
+## What I implemented
+
+**B+ Tree indexes:** Full B+ tree implementation with support for bulk loading, range scans, and iterator-based traversal. Getting the split/merge logic right with proper key redistribution was the first major debugging marathon of the semester.
+
+**Join algorithms:** Implemented multiple join strategies — nested loop join, sort-merge join, and hash join — along with the query planner that selects between them based on estimated I/O cost.
+
+**Query optimization:** A cost-based optimizer using dynamic programming over join orderings. The optimizer estimates selectivity for predicates and chooses the plan with the lowest estimated page I/Os.
+
+**Concurrency control:** Multi-granularity locking with lock escalation. Implemented the full lock type hierarchy (IS, IX, S, SIX, X) and a deadlock detection algorithm using a waits-for graph.
+
+**Recovery:** ARIES-based logging and recovery. Write-ahead logging, checkpointing, and crash recovery via analysis, redo, and undo phases.
+
+## What I learned
+
+Database systems are where theory meets brutal engineering reality. Serializability is a beautiful concept until you have to implement it with page-level locks and track 200 concurrent transactions. The course taught me to think about correctness and performance simultaneously — you can't optimize your way out of a correctness bug, and you can't correctness your way out of a 10x performance regression.

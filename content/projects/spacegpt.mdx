@@ -1,0 +1,50 @@
+---
+title: "SpaceGPT"
+description: "Natural language control of IoT devices via LLMs"
+tags: ["Python", "ML", "Research"]
+github: "https://github.com/amolbudhiraja/digi"
+year: 2023
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "Natural Language Command" }],
+    },
+    {
+      label: "Encoding",
+      nodes: [{ label: "Sentence Transformer", highlight: true, sublabel: "semantic embedding" }],
+    },
+    {
+      label: "Retrieval-Augmented Grounding",
+      nodes: [
+        { label: "Device Registry", sublabel: "capabilities + schemas" },
+        { label: "Semantic Search", highlight: true },
+        { label: "Valid Action Set" },
+      ],
+    },
+    {
+      label: "Generation",
+      nodes: [{ label: "Constrained LLM Output", sublabel: "grounded to real devices" }],
+    },
+    {
+      label: "Execution",
+      nodes: [{ label: "digiSpace API" }, { label: "IoT Device" }],
+    },
+  ]}
+  caption="RAG grounds LLM outputs to actual device capabilities at inference time"
+/>
+
+SpaceGPT was my undergraduate research project at the Berkeley NetSys Lab. The problem we were solving: IoT device programming is inaccessible. You need to understand APIs, device protocols, and often write code just to turn on a light or configure a sensor. We wanted to fix that with language.
+
+## The research
+
+SpaceGPT sits on top of the existing [digiSpace](https://github.com/netsys-lab) framework, which provides a unified abstraction layer for heterogeneous IoT devices. My work added a natural language interface on top — you talk to SpaceGPT, it figures out what you want to do, translates it into the right digiSpace API calls, and executes them.
+
+The core challenge was grounding language model outputs to concrete device actions. LLMs are good at understanding intent but bad at knowing your specific device's capabilities. We addressed this by building a retrieval-augmented system that maintains a device registry — the model queries it at inference time to constrain its outputs to valid actions for the devices actually present in the space.
+
+## What I learned
+
+Working in a research setting taught me a different mode of thinking than product engineering. You spend more time asking "does this even work?" before "how do we ship this?" The ambiguity is uncomfortable at first, then addictive.
+
+The project was also my first real exposure to the gap between LLM demos and production reliability. Getting SpaceGPT to work 95% of the time on clean inputs was straightforward. Getting it to handle edge cases, malformed requests, and unfamiliar device types gracefully was the actual research problem.

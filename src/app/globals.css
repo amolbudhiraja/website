@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #0a0a0a;
+    --muted: #f5f5f5;
+    --muted-foreground: #737373;
+    --border: #e5e5e5;
+    --accent: #0a0a0a;
+    --indigo: #6366f1;
+    --indigo-subtle: rgba(99, 102, 241, 0.08);
+  }
+
+  .dark {
+    --background: #0c0c0f;
+    --foreground: #fafafa;
+    --muted: #18181f;
+    --muted-foreground: #a3a3a3;
+    --border: #27272f;
+    --accent: #fafafa;
+    --indigo: #818cf8;
+    --indigo-subtle: rgba(129, 140, 248, 0.1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    background: var(--indigo);
+    color: #ffffff;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Prose styles for MDX content */
+.prose {
+  @apply text-foreground max-w-none;
+}
+
+.prose h1 {
+  @apply text-2xl font-semibold tracking-tight mt-8 mb-4;
+}
+
+.prose h2 {
+  @apply text-xl font-semibold tracking-tight mt-8 mb-3;
+}
+
+.prose h3 {
+  @apply text-lg font-semibold tracking-tight mt-6 mb-2;
+}
+
+.prose p {
+  @apply text-muted-foreground leading-relaxed mb-4;
+}
+
+.prose a {
+  @apply text-foreground underline underline-offset-4 decoration-border hover:decoration-foreground transition-colors;
+}
+
+.prose ul {
+  @apply list-disc list-outside ml-4 mb-4 space-y-1;
+}
+
+.prose ol {
+  @apply list-decimal list-outside ml-4 mb-4 space-y-1;
+}
+
+.prose li {
+  @apply text-muted-foreground leading-relaxed;
+}
+
+.prose blockquote {
+  @apply border-l-2 border-border pl-4 my-4 text-muted-foreground italic;
+}
+
+.prose code:not(pre code) {
+  @apply bg-muted text-foreground rounded px-1.5 py-0.5 text-sm font-mono;
+}
+
+.prose pre {
+  @apply bg-muted rounded-lg p-4 overflow-x-auto my-6 text-sm;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0 text-inherit;
+}
+
+.prose hr {
+  @apply border-border my-8;
+}
+
+.prose strong {
+  @apply text-foreground font-semibold;
+}
+
+.prose img {
+  @apply rounded-lg my-6;
+}
+
+/* rehype-pretty-code overrides */
+[data-rehype-pretty-code-figure] pre {
+  @apply bg-muted rounded-lg p-4 overflow-x-auto my-6 text-sm;
+}
+
+[data-rehype-pretty-code-figure] code {
+  @apply bg-transparent p-0;
+}

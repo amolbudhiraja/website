@@ -1,0 +1,56 @@
+---
+title: "Neural Style Transfer"
+description: "Transferring artistic style between images using CNNs"
+tags: ["Python", "PyTorch", "Computer Vision"]
+github: "https://github.com/amolbudhiraja/styletransfer"
+year: 2024
+---
+
+<SystemDiagram
+  rows={[
+    {
+      nodes: [{ label: "Content Image" }, { label: "Style Image" }],
+    },
+    {
+      label: "Feature Extraction",
+      nodes: [
+        { label: "VGG-19 Content Layers", sublabel: "conv4_2" },
+        { label: "VGG-19 Style Layers", sublabel: "conv1–5 Gram matrices" },
+      ],
+    },
+    {
+      label: "Loss Computation",
+      nodes: [
+        { label: "Content Loss" },
+        { label: "Style Loss", highlight: true },
+        { label: "TV Regularization" },
+      ],
+    },
+    {
+      label: "Optimization",
+      loop: true,
+      nodes: [{ label: "L-BFGS Gradient Descent", highlight: true, sublabel: "update generated image" }],
+    },
+    {
+      nodes: [{ label: "Stylized Output" }],
+    },
+  ]}
+  caption="Generated image initialized as noise, refined over hundreds of iterations"
+/>
+
+Neural Style Transfer is my implementation of the seminal paper *"A Neural Algorithm of Artistic Style"* by Gatys et al. The core idea is deceptively elegant: separate the content of an image from its style, then recombine them. A photo of a Berkeley street rendered in the brushstrokes of Van Gogh.
+
+## How it works
+
+The algorithm uses a pretrained VGG-19 network as a feature extractor. Content is captured by the deeper convolutional layers, which respond to high-level structure. Style is captured by computing Gram matrices across multiple layers — these measure correlations between feature maps and encode texture information without caring about spatial position.
+
+Optimization runs on the output image itself, minimizing a weighted combination of content loss and style loss via gradient descent. The balance between the two determines whether the result leans photorealistic or painterly.
+
+## What I built
+
+- Full implementation in PyTorch with configurable content/style weights
+- Support for arbitrary resolution inputs with GPU acceleration
+- Experimented with different VGG layer combinations to see how feature depth affects style capture
+- Added a total variation loss term to reduce high-frequency noise in outputs
+
+The most interesting part was tuning the layer weights — shallower style layers capture fine textures like brushstrokes, while deeper ones transfer broader color palettes and compositional patterns.
