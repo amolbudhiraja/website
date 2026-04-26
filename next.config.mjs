@@ -7,6 +7,11 @@ const nextConfig = {
       { protocol: "https", hostname: "logo.clearbit.com" },
     ],
   },
+  async rewrites() {
+    return [
+      { source: "/resume", destination: "/Amol_Budhiraja_Resume.pdf" },
+    ];
+  },
 };
 
 export default nextConfig;
